@@ -10,9 +10,12 @@ const ListedBooks = () => {
   const [readBooks, setReadBooks] = useState([]);
   const [wishBooks, setWishBooks] = useState([]);
   const [active, setActive] = useState("read");
+  const[filterReadListedBooks,setFilterReadListedBooks]=useState();
+  const[filterWishListedBooks,setFilterWishListedBooks]=useState();
+
 
   useEffect(() => {
-    const readListedBooksIds = getReadBookCard();
+    const readListedBooksIds = getReadBookCard() || [];
     if (readListedBooksIds.length > 0) {
       const targetReadList = [];
       for (const readId of readListedBooksIds) {
@@ -22,33 +25,56 @@ const ListedBooks = () => {
         targetReadList.push(readBookList);
       }
       setReadBooks(targetReadList);
+      setFilterReadListedBooks(targetReadList)
     }
   }, []);
 
   useEffect(() => {
-    const readListedBooksIds = getWishBookCard();
-    if (readListedBooksIds.length > 0) {
-      const targetReadList = [];
-      for (const readId of readListedBooksIds) {
-        const readBookList = readListedBooksIds.find(
+    const wishListedBooksIds = getWishBookCard() || [];
+    if (wishListedBooksIds.length > 0) {
+      const targetWishList = [];
+      for (const readId of wishListedBooksIds) {
+        const wishBookList = wishListedBooksIds.find(
           (listedId) => listedId === readId
         );
-        targetReadList.push(readBookList);
+        targetWishList.push(wishBookList);
       }
-      setWishBooks(targetReadList);
+      setWishBooks(targetWishList);
+      setFilterWishListedBooks(targetWishList)
     }
   }, []);
+  const bubbleSortForPages =(books)=>{
+    const allBooksPages = [...books];
+    for(let i=0;i<allBooksPages.length-1;i++){
+      for(let j=0;j<allBooksPages.length-i-1;j++){
+        if(allBooksPages[j].totalPages>allBooksPages[j+1].totalPages){
+          const temp = allBooksPages[j];
+          allBooksPages[j]=allBooksPages[j+1];
+          allBooksPages[j+1]=temp;
+        }
+      }
+    }
+    return allBooksPages;
+  };
+  const handleReadList =()=>{
+    const sortReadList = bubbleSortForPages(filterReadListedBooks);
+    setFilterReadListedBooks(sortReadList)
+  }
+  const handleWishList =()=>{
+    const sortWishList = bubbleSortForPages(filterWishListedBooks);
+    setFilterWishListedBooks(sortWishList)
+  }
   return (
     <div>
       <div className="text-center mt-6 mb-8">
         <details className="dropdown">
           <summary className="btn m-1">open or close</summary>
           <ul className="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-            <li>
-              <a></a>
+            <li onClick={()=>active==='read'?handleReadList():handleWishList()}>
+              <a>Pages</a>
             </li>
             <li>
-              <a>Item 2</a>
+              <a>Rating</a>
             </li>
           </ul>
         </details>
@@ -82,7 +108,7 @@ const ListedBooks = () => {
       <div>
         {active === "read" && (
           <div className="grid grid-cols-1 gap-4">
-            {readBooks.map((readBook) => (
+            {filterReadListedBooks?.map((readBook) => (
               <ReadListedBook
                 key={readBook.id}
                 readBook={readBook}
@@ -94,7 +120,7 @@ const ListedBooks = () => {
       <div>
         {active === "wish" && (
           <div className="grid grid-cols-1 gap-4">
-            {wishBooks.map((wishBook) => (
+            {filterWishListedBooks?.map((wishBook) => (
               <WishListedBook
                 key={wishBook.id}
                 wishBook={wishBook}
