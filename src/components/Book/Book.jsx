@@ -8,11 +8,11 @@ const Book = ({ book }) => {
       <Link to={`/detail/${bookId}`}>
         <div className="card bg-base-100 shadow-sm">
           <figure className="mt-4">
-            <img className="h-72 w-72 rounded" src={image} alt="Books" />
+            <img className="h-72 md:w-72 rounded" src={image} alt="Books" />
           </figure>
           <div className="card-body">
             <div className="card-actions">
-              <div className="flex gap-3">
+              <div className="">
                 {tags.map((tag) => (
                   <ul key={tag}>
                     <p className="badge badge-ghost text-green-500 font-bold">
