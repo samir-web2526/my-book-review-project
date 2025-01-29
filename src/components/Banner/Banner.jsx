@@ -9,7 +9,7 @@ const Banner = () => {
                     <Link to={`/list`}><button className="bg-green-500 px-4 py-2 mb-6 text-white rounded font-bold">View The List</button></Link>
                 </div>
                 <div> 
-                    <img className="md:h-80" src={'/src/assets/banner.png'} alt="" />
+                    <img className="md:h-80" src={'/assets/banner.png'} alt="" />
                 </div>
             </div>
         </div>
