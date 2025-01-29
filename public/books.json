@@ -29,7 +29,7 @@
       "bookId": 3,
       "bookName": "The Great Gatsby",
       "author": "F. Scott Fitzgerald",
-      "image": "./assets/gatbsy.jpeg",
+      "image": "./assets/",
       "review": "A novel of the Jazz Age that explores themes of decadence, idealism, resistance to change, social upheaval, and excess.",
       "totalPages": 180,
       "rating": 4.5,
