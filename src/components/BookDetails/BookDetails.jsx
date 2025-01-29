@@ -97,10 +97,10 @@ const BookDetails = () => {
            
           </div>
           <div className="mt-8 mb-6 flex gap-8">
-            <button onClick={() => handleRead()} className="btn px-8">
+            <button onClick={() => handleRead()} className="bg-green-500 px-8 py-2 font-bold text-white rounded">
               Read
             </button>
-            <button onClick={() => handleWishList()} className="btn px-6">
+            <button onClick={() => handleWishList()} className="bg-blue-300 px-6 py-2 font-bold text-white rounded">
               Wishlist
             </button>
           </div>
