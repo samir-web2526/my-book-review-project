@@ -17,7 +17,7 @@ const WishListedBook = ({ wishBook }) => {
   } = wishBook;
   return (
     <div>
-      <div className="border rounded">
+      <div className="border bg-base-100 shadow-sm rounded">
         <div className="md:grid md:grid-cols-3 py-4 px-4">
           <div className="bg-base-200 rounded flex justify-center">
             <img className="py-10 h-72" src={image} alt="" />
@@ -27,7 +27,7 @@ const WishListedBook = ({ wishBook }) => {
             <p className="font-medium mb-3">By: {author}</p>
             <div className="md:flex gap-4">
               <p className="md:flex gap-2">
-                <h3>Tags: </h3>
+                <h3 className="font-medium">Tags: </h3>
                 {tags.map((tag) => (
                   <ul
                     className="badge badge-ghost text-green-500 font-bold"
@@ -37,21 +37,21 @@ const WishListedBook = ({ wishBook }) => {
                   </ul>
                 ))}
               </p>
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 mt-2 md:mt-0">
                 <span>
                   <MdOutlinePublishedWithChanges />
                 </span>
                 <p><span className="font-medium">Year of Publishing:</span> {yearOfPublishing}</p>
               </div>
             </div>
-            <div className="md:flex gap-4 mt-4 mb-4">
+            <div className="md:flex gap-4 mt-2 md:mt-4 mb-4">
               <div className="flex items-center gap-1.5">
                 <span>
                   <FcBusinessman />
                 </span>
                 <h3> <span className="font-medium"> Publisher: </span>{publisher}</h3>
               </div>
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 md:mt-0 mt-2">
                 <span>
                   <RiPagesLine />
                 </span>
@@ -59,11 +59,11 @@ const WishListedBook = ({ wishBook }) => {
               </div>
             </div>
             <hr />
-            <div className="md:flex items-center gap-4 mt-4">
-              <div className="mt-2 mb-2 text-center bg-blue-100 text-blue-300 px-4 py-1 rounded-2xl font-bold">
+            <div className="grid md:grid-cols-3 md:items-center gap-4 mt-4">
+              <div className="text-center bg-blue-100 text-blue-300 px-4 py-1 rounded-2xl font-bold">
                 Category:{category}
               </div>
-              <div className="text-orange-300 px-4 py-1 text-center mb-2 rounded-2xl bg-orange-100 font-bold">
+              <div className="text-orange-300 px-4 py-1 text-center rounded-2xl bg-orange-100 font-bold">
                 Rating:{rating}
               </div>
               <div className="bg-green-500 text-white text-center px-4 py-1 rounded-2xl font-bold">

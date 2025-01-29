@@ -17,7 +17,7 @@ const ReadListedBook = ({ readBook }) => {
   } = readBook;
   return (
     <div>
-      <div className="border rounded">
+      <div className="border bg-base-100 shadow-sm rounded">
         <div className="md:grid md:grid-cols-3 py-4 px-4">
           <div className="bg-base-200 rounded flex justify-center">
             <img className="py-10 h-72" src={image} alt="" />
@@ -59,14 +59,14 @@ const ReadListedBook = ({ readBook }) => {
               </div>
             </div>
             <hr />
-            <div className="md:flex items-center gap-4 mt-4">
-              <div className="mt-2 mb-2 text-center bg-blue-100 text-blue-300 px-4 py-1 rounded-2xl font-bold">
+            <div className="grid md:grid-cols-3 md:items-center gap-4 mt-4">
+              <div className=" text-center bg-blue-100 text-blue-300 px-4 py-1 rounded-2xl font-bold">
                 Category:{category}
               </div>
-              <div className="text-orange-300 px-4 py-1 text-center mb-2 rounded-2xl bg-orange-100 font-bold">
+              <div className="text-orange-300 px-2 py-1 text-center rounded-2xl bg-orange-100 font-bold">
                 Rating:{rating}
               </div>
-              <div className="bg-green-500 text-white px-4 py-1 text-center rounded-2xl font-bold">
+              <div className="bg-green-500 text-white px-2 py-1 text-center rounded-2xl font-bold">
                 <Link to={`/detail/${readBook.bookId}`}><button>View Details</button></Link>
               </div>
             </div>

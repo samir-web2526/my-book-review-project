@@ -1,8 +1,8 @@
 import { CiStar } from "react-icons/ci";
 import { Link } from "react-router-dom";
-import PropTypes from 'prop-types'; 
+import PropTypes from "prop-types";
 const Book = ({ book }) => {
-  const {bookId, image, tags, bookName, author, category, rating } = book;
+  const { bookId, image, tags, bookName, author, category, rating } = book;
   return (
     <div>
       <Link to={`/detail/${bookId}`}>
@@ -12,14 +12,17 @@ const Book = ({ book }) => {
           </figure>
           <div className="card-body">
             <div className="card-actions">
-              <div className="">
-                {tags.map((tag) => (
-                  <ul key={tag}>
-                    <p className="badge badge-ghost text-green-500 font-bold">
-                      {tag}
-                    </p>
-                  </ul>
-                ))}
+              <div>
+                <h1 className="font-medium mb-2">tags:</h1>
+                <p className="md:flex">
+                  {tags.map((tag) => (
+                    <ul key={tag}>
+                      <p className="badge badge-ghost text-green-500 font-bold">
+                        {tag}
+                      </p>
+                    </ul>
+                  ))}
+                </p>
               </div>
             </div>
 
@@ -39,7 +42,7 @@ const Book = ({ book }) => {
     </div>
   );
 };
-Book.propTypes ={
-    book:PropTypes.object.isRequired
-}
+Book.propTypes = {
+  book: PropTypes.object.isRequired,
+};
 export default Book;
