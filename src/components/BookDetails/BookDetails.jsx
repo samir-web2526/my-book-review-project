@@ -52,7 +52,7 @@ const BookDetails = () => {
     <div>
       <div className="grid  md:grid-cols-2 gap-8 mt-10 mb-5">
         <div className="bg-base-200 flex justify-center py-20">
-          <img className="h-96 w-80" src={`/assets/${book.image}`} alt="" />
+          <img className="h-96 w-80" src={book.image} alt="" />
         </div>
         <div className="border border-base-300 rounded px-6">
           <h1 className="text-3xl mt-8 mb-3 font-bold">{book.bookName}</h1>
