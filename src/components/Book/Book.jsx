@@ -27,10 +27,10 @@ const Book = ({ book }) => {
             </div>
 
             <h2 className="card-title">{bookName}</h2>
-            <p>By: {author}</p>
+            <p><span className="font-medium">By:</span> {author}</p>
             <hr />
             <div className="flex justify-between">
-              <span>{category}</span>
+              <span className="font-medium">{category}</span>
               <div className="flex items-center gap-2">
                 {rating}
                 <CiStar className="text-xl" />

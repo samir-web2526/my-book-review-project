@@ -18,7 +18,9 @@ const BookDetails = () => {
 
   const handleRead = () => {
     const readBooks = getReadBookCard();
-    const isRead = readBooks.find((readBook) => readBook.bookId === book.bookId);
+    const isRead = readBooks.find(
+      (readBook) => readBook.bookId === book.bookId
+    );
     if (isRead) {
       toast("Already in read list");
     } else {
@@ -29,23 +31,22 @@ const BookDetails = () => {
   const handleWishList = () => {
     const wishListBooks = getWishBookCard();
     const readListBooks = getReadBookCard();
-    const isRead = readListBooks.find((readBook) => readBook.bookId === book.bookId);
+    const isRead = readListBooks.find(
+      (readBook) => readBook.bookId === book.bookId
+    );
     const isWishList = wishListBooks.find(
       (wishListBook) => wishListBook.bookId === book.bookId
     );
-    if(!isRead){
-      if(isWishList){
+    if (!isRead) {
+      if (isWishList) {
         toast("Already in wishList");
-      }
-      else{
+      } else {
         saveWishBookCard(book);
-      toast("Added in wishlist successfully");
+        toast("Added in wishlist successfully");
       }
-    }
-    else{
+    } else {
       toast("Can't add wishlist,it is on readlist");
     }
-    
   };
 
   return (
@@ -63,30 +64,39 @@ const BookDetails = () => {
           <p className="mt-3">
             <span className="font-medium">Review:</span> {book.review}
           </p>
-          <div className="flex mt-3 mb-3 gap-5">
+          <div className="md:flex mt-3 mb-3 gap-5">
             <h3 className="font-medium">Tags:</h3>
-            <p className="flex gap-8 badge badge-ghost text-green-400">
+            <p className="md:flex gap-3  ">
               {book.tags.map((tag) => (
-                <ul key={tag.id}>{tag}</ul>
+                <ul className="text-green-400 badge badge-ghost" key={tag.id}>
+                  {tag}
+                </ul>
               ))}
             </p>
           </div>
           <hr />
-          <div className="mt-8 grid grid-cols-2">
+          <div className="mt-8">
             <div>
-              <h3>Number of Pages:</h3>
-              <h3 className="mt-2 mb-2">Publisher:</h3>
-              <h3 className="mb-2">Year of Publishing:</h3>
-              <h3>Rating:</h3>
+              <div className="grid grid-cols-2 items-center gap-10">
+                <h3>Number of Pages:</h3>
+                <h3 className="font-medium">{book.totalPages}</h3>
+              </div>
+              <div className="grid grid-cols-2 items-center gap-10">
+                <h3 className="mt-2 mb-2">Publisher:</h3>
+                <h3 className="font-medium mt-2 mb-2">{book.publisher}</h3>
+              </div>
+              <div className="grid grid-cols-2 items-center gap-10">
+                <h3 className="mb-2">Year of Publishing:</h3>
+                <h3 className="font-medium mb-2">{book.yearOfPublishing}</h3>
+              </div>
+              <div className="grid grid-cols-2 items-center gap-10">
+                <h3>Rating:</h3>
+                <h3 className="font-medium">{book.rating}</h3>
+              </div>
             </div>
-            <div>
-              <h3 className="font-medium">{book.totalPages}</h3>
-              <h3 className="font-medium mt-2 mb-2">{book.publisher}</h3>
-              <h3 className="font-medium mb-2">{book.yearOfPublishing}</h3>
-              <h3 className="font-medium">{book.rating}</h3>
-            </div>
+           
           </div>
-          <div className="mt-8 flex gap-8">
+          <div className="mt-8 mb-6 flex gap-8">
             <button onClick={() => handleRead()} className="btn px-8">
               Read
             </button>

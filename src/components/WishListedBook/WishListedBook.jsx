@@ -26,8 +26,8 @@ const WishListedBook = ({ wishBook }) => {
             <h2 className="text-3xl mt-8 mb-3 font-bold">{bookName}</h2>
             <p className="font-medium mb-3">By: {author}</p>
             <div className="md:flex gap-4">
-              <p className="md:flex gap-2">
-                <h3 className="font-medium">Tags: </h3>
+              <p className="md:flex flex-col gap-2">
+                <h3 className="mb-2 md:mb-0">Tags: </h3>
                 {tags.map((tag) => (
                   <ul
                     className="badge badge-ghost text-green-500 font-bold"
@@ -37,21 +37,21 @@ const WishListedBook = ({ wishBook }) => {
                   </ul>
                 ))}
               </p>
-              <div className="flex items-center gap-1.5 mt-2 md:mt-0">
+              <div className="flex items-center gap-1.5 mt-4">
                 <span>
                   <MdOutlinePublishedWithChanges />
                 </span>
                 <p><span className="font-medium">Year of Publishing:</span> {yearOfPublishing}</p>
               </div>
             </div>
-            <div className="md:flex gap-4 mt-2 md:mt-4 mb-4">
-              <div className="flex items-center gap-1.5">
+            <div className="md:flex gap-4 mt-4 mb-4">
+              <div className="flex items-center gap-1.5 mb-4">
                 <span>
                   <FcBusinessman />
                 </span>
                 <h3> <span className="font-medium"> Publisher: </span>{publisher}</h3>
               </div>
-              <div className="flex items-center gap-1.5 md:mt-0 mt-2">
+              <div className="flex items-center gap-1.5">
                 <span>
                   <RiPagesLine />
                 </span>
@@ -60,13 +60,13 @@ const WishListedBook = ({ wishBook }) => {
             </div>
             <hr />
             <div className="grid md:grid-cols-3 md:items-center gap-4 mt-4">
-              <div className="text-center bg-blue-100 text-blue-300 px-4 py-1 rounded-2xl font-bold">
+              <div className=" text-center bg-blue-100 text-blue-300 px-4 py-1 rounded-2xl font-bold">
                 Category:{category}
               </div>
-              <div className="text-orange-300 px-4 py-1 text-center rounded-2xl bg-orange-100 font-bold">
+              <div className="text-orange-300 px-2 py-1 text-center rounded-2xl bg-orange-100 font-bold">
                 Rating:{rating}
               </div>
-              <div className="bg-green-500 text-white text-center px-4 py-1 rounded-2xl font-bold">
+              <div className="bg-green-500 text-white px-2 py-1 text-center rounded-2xl font-bold">
                 <Link to={`/detail/${wishBook.bookId}`}><button>View Details</button></Link>
               </div>
             </div>

@@ -26,8 +26,8 @@ const ReadListedBook = ({ readBook }) => {
             <h2 className="text-3xl mt-8 mb-3 font-bold">{bookName}</h2>
             <p className="font-medium mb-3">By: {author}</p>
             <div className="md:flex gap-4">
-              <p className="md:flex gap-2">
-                <h3>Tags: </h3>
+              <p className="md:flex flex-row gap-2">
+                <h3 className="mb-2 md:mb-0">Tags: </h3>
                 {tags.map((tag) => (
                   <ul
                     className="badge badge-ghost text-green-500 font-bold"
@@ -37,7 +37,7 @@ const ReadListedBook = ({ readBook }) => {
                   </ul>
                 ))}
               </p>
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 mt-4 md:mt-0">
                 <span>
                   <MdOutlinePublishedWithChanges />
                 </span>
@@ -45,7 +45,7 @@ const ReadListedBook = ({ readBook }) => {
               </div>
             </div>
             <div className="md:flex gap-4 mt-4 mb-4">
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 mb-4 md:mb-0">
                 <span>
                   <FcBusinessman />
                 </span>
