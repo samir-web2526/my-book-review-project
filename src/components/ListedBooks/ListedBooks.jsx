@@ -1,24 +1,22 @@
-import { useEffect, useState } from "react";
+import {useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { getReadBookCard, getWishBookCard } from "../local";
 import ReadListedBook from "../ReadListedBook/ReadListedBook";
 import WishListedBook from "../WishListedBook/WishListedBook";
+import { BookContext } from "../ContextBook/ContextBook";
 
 const ListedBooks = () => {
   const listedBooks = useLoaderData();
-  console.log(listedBooks);
-  // const [readBooks, setReadBooks] = useState([]);
-  // const [wishBooks, setWishBooks] = useState([]);
+  console.log(listedBooks)
+  const{filterReadListedBooks,setFilterReadListedBooks}=useContext(BookContext)
   const [active, setActive] = useState("read");
-  const[filterReadListedBooks,setFilterReadListedBooks]=useState();
-  const[filterWishListedBooks,setFilterWishListedBooks]=useState();
-  const[unsortedReadBooks,setUnsortedReadBooks]=useState([]);
-  const[unsortedWishBooks,setUnsortedWishBooks]=useState([]);
-
-
+  const [filterWishListedBooks, setFilterWishListedBooks] = useState([]);
+  const [unsortedReadBooks, setUnsortedReadBooks] = useState([]);
+  const [unsortedWishBooks, setUnsortedWishBooks] = useState([]);
 
   useEffect(() => {
     const readListedBooksIds = getReadBookCard() || [];
+   
     if (readListedBooksIds.length > 0) {
       const targetReadList = [];
       for (const readId of readListedBooksIds) {
@@ -27,11 +25,11 @@ const ListedBooks = () => {
         );
         targetReadList.push(readBookList);
       }
-      // setReadBooks(targetReadList);
-      setFilterReadListedBooks(targetReadList)
-      setUnsortedReadBooks(targetReadList)
+    
+      setFilterReadListedBooks(targetReadList);
+      setUnsortedReadBooks(targetReadList);
     }
-  }, []);
+  }, [setFilterReadListedBooks]);
 
   useEffect(() => {
     const wishListedBooksIds = getWishBookCard() || [];
@@ -47,66 +45,85 @@ const ListedBooks = () => {
       setUnsortedWishBooks(targetWishList);
     }
   }, []);
-  const bubbleSortForPages =(books)=>{
+  const bubbleSortForPages = (books) => {
     const allBooksPages = [...books];
-    for(let i=0;i<allBooksPages.length-1;i++){
-      for(let j=0;j<allBooksPages.length-i-1;j++){
-        if(allBooksPages[j].totalPages<allBooksPages[j+1].totalPages){
+    for (let i = 0; i < allBooksPages.length - 1; i++) {
+      for (let j = 0; j < allBooksPages.length - i - 1; j++) {
+        if (allBooksPages[j].totalPages < allBooksPages[j + 1].totalPages) {
           const temp = allBooksPages[j];
-          allBooksPages[j]=allBooksPages[j+1];
-          allBooksPages[j+1]=temp;
+          allBooksPages[j] = allBooksPages[j + 1];
+          allBooksPages[j + 1] = temp;
         }
       }
     }
     return allBooksPages;
   };
-  const bubbleSortForRating =(books)=>{
+  const bubbleSortForRating = (books) => {
     const allBooksRating = [...books];
-    for(let i=0;i<allBooksRating.length-1;i++){
-      for(let j=0;j<allBooksRating.length-i-1;j++){
-        if(allBooksRating[j].rating<allBooksRating[j+1].rating){
+    for (let i = 0; i < allBooksRating.length - 1; i++) {
+      for (let j = 0; j < allBooksRating.length - i - 1; j++) {
+        if (allBooksRating[j].rating < allBooksRating[j + 1].rating) {
           const temp = allBooksRating[j];
-          allBooksRating[j]=allBooksRating[j+1];
-          allBooksRating[j+1]=temp;
+          allBooksRating[j] = allBooksRating[j + 1];
+          allBooksRating[j + 1] = temp;
         }
       }
     }
     return allBooksRating;
   };
-  const handleUnsortedReadBook =()=>{
-    setFilterReadListedBooks(unsortedReadBooks)
-  }
-  const handleUnsortedWishBook =()=>{
+  const handleUnsortedReadBook = () => {
+    setFilterReadListedBooks(unsortedReadBooks);
+  };
+  const handleUnsortedWishBook = () => {
     setFilterWishListedBooks(unsortedWishBooks);
-  }
-  const handleReadListByPages =()=>{
+  };
+  const handleReadListByPages = () => {
     const sortReadListByPages = bubbleSortForPages(filterReadListedBooks);
     setFilterReadListedBooks(sortReadListByPages);
-  }
-  const handleReadListByRating =()=>{
+  };
+  const handleReadListByRating = () => {
     const sortReadListByRating = bubbleSortForRating(filterReadListedBooks);
-    setFilterReadListedBooks(sortReadListByRating)
-  }
-  const handleWishListByPages =()=>{
+    setFilterReadListedBooks(sortReadListByRating);
+  };
+  const handleWishListByPages = () => {
     const sortWishListByPages = bubbleSortForPages(filterWishListedBooks);
     setFilterWishListedBooks(sortWishListByPages);
-    
-  }
-  const handleWishListByRating=()=>{
+  };
+  const handleWishListByRating = () => {
     const sortWishListByRating = bubbleSortForRating(filterWishListedBooks);
     setFilterWishListedBooks(sortWishListByRating);
-  }
+  };
   return (
     <div>
       <div className="text-center mt-6 mb-12">
         <details className="dropdown">
           <summary className="btn m-1">Sort By</summary>
           <ul className="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-            <li onClick={()=>active==='read'?handleUnsortedReadBook():handleUnsortedWishBook()}><a>Unsorted</a></li>
-            <li onClick={()=>active==='read'?handleReadListByPages():handleWishListByPages()}>
+            <li
+              onClick={() =>
+                active === "read"
+                  ? handleUnsortedReadBook()
+                  : handleUnsortedWishBook()
+              }
+            >
+              <a>Unsorted</a>
+            </li>
+            <li
+              onClick={() =>
+                active === "read"
+                  ? handleReadListByPages()
+                  : handleWishListByPages()
+              }
+            >
               <a>Pages</a>
             </li>
-            <li onClick={()=>active==='read'?handleReadListByRating():handleWishListByRating()}>
+            <li
+              onClick={() =>
+                active === "read"
+                  ? handleReadListByRating()
+                  : handleWishListByRating()
+              }
+            >
               <a>Rating</a>
             </li>
           </ul>
@@ -139,16 +156,19 @@ const ListedBooks = () => {
         </div>
       </div>
       <div>
-        {active === "read" && (
-          <div className="grid grid-cols-1 gap-4">
-            {filterReadListedBooks?.map((readBook) => (
-              <ReadListedBook
-                key={readBook.id}
-                readBook={readBook}
-              ></ReadListedBook>
-            ))}
+          <div>
+            {active === "read" && (
+              <div className="grid grid-cols-1 gap-4">
+                {filterReadListedBooks?.map((readBook) => (
+                 
+                  <ReadListedBook
+                    key={readBook.id}
+                    readBook={readBook}
+                  ></ReadListedBook>
+                ))}
+              </div>
+            )}
           </div>
-        )}
       </div>
       <div>
         {active === "wish" && (

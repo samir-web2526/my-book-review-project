@@ -1,9 +1,13 @@
-import PropTypes from "prop-types";
-import { useLoaderData } from "react-router-dom";
+import { useContext } from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
+import { BookContext } from "../ContextBook/ContextBook";
 
 const PagesToRead = () => {
-  const data = useLoaderData() || [];
+
+  const { filterReadListedBooks } = useContext(BookContext) || [];
+  console.log(filterReadListedBooks)
+  console.log(filterReadListedBooks.length)
+  
   const colors = ["#8884d8", "#82ca9d", "#ff7300", "#ff0000", "#00cc99"];
 
   const getPath = (x, y, width, height) =>
@@ -17,9 +21,8 @@ const PagesToRead = () => {
      Z`;
 
   const TriangleBar = (props) => {
+    // eslint-disable-next-line react/prop-types
     const { x, y, width, height, index } = props;
-    console.log(typeof (x, y));
-
     return (
       <path
         d={getPath(x, y, width, height)}
@@ -34,7 +37,7 @@ const PagesToRead = () => {
       <BarChart
         width={600}
         height={300}
-        data={data}
+        data={filterReadListedBooks}
         margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
       >
         <CartesianGrid strokeDasharray="3 3" />
@@ -46,12 +49,5 @@ const PagesToRead = () => {
     </div>
   );
 };
-PagesToRead.propTypes = {
-  props: PropTypes.object.isRequired,
-  x: PropTypes.number.isRequired,
-  y: PropTypes.number.isRequired,
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
-  index: PropTypes.number.isRequired,
-};
+
 export default PagesToRead;

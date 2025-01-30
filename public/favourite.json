@@ -1,0 +1,42 @@
+[
+    {
+        "bookId": 1,
+        "bookName": "War and Peace",
+        "author": "Leo Tolstoy",
+        "image": "/assets/war.jpeg",
+        "review": "A historical novel that intertwines the lives of private and public individuals during the time of the Napoleonic wars.",
+        "totalPages": 1225,
+        "rating": 4.7,
+        "category": "Historical Fiction",
+        "tags": ["classic", "war", "history"],
+        "publisher": "The Russian Messenger",
+        "yearOfPublishing": 1869
+    },
+    {
+        "bookId": 2,
+        "bookName": "Moby-Dick",
+        "author": "Herman Melville",
+        "image": "/assets/moby.jpeg",
+        "review": "An epic tale of the voyage of the whaling ship Pequod and its captain, Ahab, who obsessively pursues the great white whale, Moby Dick.",
+        "totalPages": 635,
+        "rating": 4.3,
+        "category": "Adventure",
+        "tags": ["classic", "adventure", "whale"],
+        "publisher": "Harper & Brothers",
+        "yearOfPublishing": 1851
+    },
+    {
+        "bookId": 3,
+        "bookName": "1984",
+        "author": "George Orwell",
+        "image": "/assets/1984.jpeg",
+        "review": "A dystopian social science fiction novel and cautionary tale about the dangers of totalitarianism.",
+        "totalPages": 328,
+        "rating": 4.7,
+        "category": "Science Fiction",
+        "tags": ["dystopia", "totalitarianism", "classic"],
+        "publisher": "Secker & Warburg",
+        "yearOfPublishing": 1949
+      }
+
+]

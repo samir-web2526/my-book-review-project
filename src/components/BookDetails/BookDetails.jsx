@@ -51,6 +51,7 @@ const BookDetails = () => {
 
   return (
     <div>
+      <h1 className="text-center font-bold text-5xl mt-6 mb-8">Book Details</h1>
       <div className="grid  md:grid-cols-2 gap-8 mt-10 mb-5">
         <div className="bg-base-200 flex justify-center py-20">
           <img className="h-96 w-80" src={book.image} alt="" />

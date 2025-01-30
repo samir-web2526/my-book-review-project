@@ -13,10 +13,11 @@ const Header = () => {
   },[location])
 
     const links =<>
-        <NavLink className={`${activeRoute === "/"?"btn activeRoute":"btn"}`} to={"/"}>Home</NavLink>
-        <NavLink className={`ml-4 mr-5 ${activeRoute === "/list"?"btn activeRoute":"btn"}`} to={"/list"}>Listed Books</NavLink>
-        <NavLink className={`${activeRoute === "/read"?"btn activeRoute":"btn"}`} to={"/read"}>Pages To Read</NavLink>
-        {/* <NavLink className={`${}`} to={"/read"}>Pages To Read</NavLink> */}
+        <NavLink className={`${activeRoute === "/" ? "btn activeRoute":"btn"}`} to={"/"}>Home</NavLink>
+        <NavLink className={`${activeRoute === "/list" ? "btn activeRoute":"btn"}`} to={"/list"}>Listed Books</NavLink>
+        <NavLink className={`${activeRoute === "/read" ? "btn activeRoute":"btn"}`} to={"/read"}>Pages To Read</NavLink>
+        <NavLink className={`${activeRoute === "/fav" ? "btn activeRoute" : "btn"}`} to={"/fav"}>Favourites</NavLink>
+        <NavLink className={`${activeRoute === "/blogs" ? "btn activeRoute" : "btn"}`} to={"/blogs"}>Blogs</NavLink>
     </>
 
   return (
@@ -42,7 +43,7 @@ const Header = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-54 p-2 shadow"
             >
               {links}
             </ul>
@@ -50,7 +51,7 @@ const Header = () => {
           <h1 className="btn btn-ghost text-xl invisible md:visible">Book Vibe</h1>
         </div>
         <div className="navbar-center hidden md:flex">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu menu-horizontal flex gap-3 px-1">
             {links}
           </ul>
         </div>
